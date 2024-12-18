@@ -1,0 +1,20 @@
+.bg{
+    min-height: 910px;
+    padding-top: 60px;
+}
+
+h1{
+    margin-bottom: 20px;
+}
+
+.bg-login{
+    padding: 10px;
+    padding-top: 30px;
+}
+.btn-2{
+    width: 300px;
+    margin-bottom: 10px;
+}
+.txt-span{
+    color: rgba(240, 248, 255, 0.541);
+}
