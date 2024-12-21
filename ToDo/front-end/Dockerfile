@@ -20,4 +20,4 @@ EXPOSE 3000
 COPY . .
 
 # Run the specified command within the container
-CMD ["npm", "run", "dev"]
+CMD ["npm", "start"]

@@ -11,11 +11,14 @@ services:
   frontend:
     build: ./front-end
     ports:
-      - "3000:3000"  
+      - "8000:80"  
     networks:
       - mern_network
     depends_on:
       - backend
+    volumes:
+      - '.:/usr/src/app'
+      - /usr/src/app/node_modules
       
   backend:
     build: ./backend-server
