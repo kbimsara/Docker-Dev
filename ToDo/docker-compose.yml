@@ -11,7 +11,7 @@ services:
   frontend:
     build: ./front-end
     ports:
-      - "8000:80"  
+      - "3000:3000"  
     networks:
       - mern_network
     depends_on:
