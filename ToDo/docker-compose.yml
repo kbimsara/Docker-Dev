@@ -16,9 +16,6 @@ services:
       - mern_network
     depends_on:
       - backend
-    volumes:
-      - './:/app'
-      - app/node_modules
       
   backend:
     build: ./backend-server
