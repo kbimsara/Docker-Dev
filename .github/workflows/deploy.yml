@@ -24,15 +24,15 @@ jobs:
 
     - name: Build and Push Backend Image
       run: |
-        docker build -t kbimsara/cloud-app-dev:backend ./backend-server
+        docker build -t kbimsara/cloud-app-dev:backend ./todo/backend-server
         docker push kbimsara/cloud-app-dev:backend
 
     - name: Build and Push Frontend Image
       run: |
-        docker build -t kbimsara/cloud-app-dev:frontend ./front-end
+        docker build -t kbimsara/cloud-app-dev:frontend ./todo/front-end
         docker push kbimsara/cloud-app-dev:frontend
 
     - name: Build and Push MongoDB Image
       run: |
-        docker build -t kbimsara/cloud-app-dev:mongo ./mongodb
+        docker build -t kbimsara/cloud-app-dev:mongo ./todo/mongodb
         docker push kbimsara/cloud-app-dev:mongo
