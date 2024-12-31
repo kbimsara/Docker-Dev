@@ -1,15 +1,4 @@
 services:
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
-    networks:
-      - mern_network
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-
   mongodb:
     image: kbimsara/cloud-app-dev:mongo
     ports:
@@ -18,11 +7,6 @@ services:
       - mern_network
     volumes:
       - mongo-data:/data/db 
-    healthcheck:
-      test: ["CMD", "mongo", "--eval", "db.runCommand('ping').ok"]
-      interval: 10s
-      timeout: 10s
-      retries: 5
 
   frontend:
     image: kbimsara/cloud-app-dev:frontend
@@ -32,11 +16,6 @@ services:
       - mern_network
     depends_on:
       - backend
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
 
   backend:
     image: kbimsara/cloud-app-dev:backend
@@ -48,8 +27,3 @@ services:
       MONGO_URI: mongodb://mongodb:27017/todoDB
     depends_on:
       - mongodb
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 3
