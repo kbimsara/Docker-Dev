@@ -5,6 +5,9 @@ services:
     image: kbimsara/dev-todo:frontend  # This will pull the image from Docker Hub
     ports:
       - "3000:3000"
+    depends_on:
+      - backend1
+      - backend2
 
   backend1:
     image: kbimsara/dev-todo:backend  # This will pull the image from Docker Hub
@@ -12,6 +15,8 @@ services:
       - "4000"
     environment:
       - MONGO_URI=mongodb://mongo:27017/todo  # MongoDB connection URL
+    depends_on:
+      - mongo
 
   backend2:
     image: kbimsara/dev-todo:backend  # This will pull the image from Docker Hub
@@ -19,6 +24,16 @@ services:
       - "4000"
     environment:
       - MONGO_URI=mongodb://mongo:27017/todo  # MongoDB connection URL
+    depends_on:
+      - mongo
+
+  mongo:
+    image: dev-todo:mongo  # Tag for your custom MongoDB image
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
 
   nginx:
     image: kbimsara/dev-todo:nginx  # This will pull the image from Docker Hub
@@ -30,14 +45,6 @@ services:
       - backend1
       - backend2
       - mongo
-
-  mongo:
-    image: dev-todo:mongo  # Tag for your custom MongoDB image
-    container_name: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
 
 volumes:
   mongo-data:
