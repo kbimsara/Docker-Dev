@@ -27,16 +27,31 @@ jobs:
     - name: List Files in Repository
       run: ls -al
 
-    - name: Build and Push Docker Images
+    - name: Build Front-end
       run: |
-        cd "./ToDo"  
-        docker-compose build
-        docker-compose push
+        cd "./ToDo/front-end" 
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/dev-tod:frontend .
+
+    - name: Build Back-end
+      run: |
+        cd "./ToDo/backend-server" 
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/dev-tod:backend .
+
+    - name: Build MongoDB
+      run: |
+        cd "./ToDo/mongoDB" 
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/dev-tod:mongo .
+
+    # - name: Build and Push Docker Images
+    #   run: |
+    #     cd "./ToDo"  
+    #     docker-compose build
+    #     docker-compose push
 
     - name: Print All Docker Images
       run: |
-        docker ps -a 
+        docker images 
         
-    - name: Push Docker image
-      run: |
-        docker push ${{ secrets.DOCKER_USERNAME }}/dev-todo:latest
+    # - name: Push Docker image
+    #   run: |
+    #     docker push ${{ secrets.DOCKER_USERNAME }}/dev-todo:latest
