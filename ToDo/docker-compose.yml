@@ -1,40 +1,26 @@
-version: '3.8'
-
+version: '3'
 services:
   frontend:
-    image: $DOCKER_USERNAME/dev-todo:frontend
-    container_name: frontend
+    image: kbimsara/cloud-app-dev:frontend
     ports:
       - "3000:3000"
 
   backend1:
-    image: $DOCKER_USERNAME/dev-todo:backend
-    container_name: backend1
-    environment:
-      - MONGO_URL=mongodb://mongo:27017/todo
+    image: kbimsara/cloud-app-dev:backend
+    expose:
+      - "4000"
 
   backend2:
-    image: $DOCKER_USERNAME/dev-todo:backend
-    container_name: backend2
-    environment:
-      - MONGO_URL=mongodb://mongo:27017/todo
-
-  mongo:
-    image: $DOCKER_USERNAME/dev-todo:mongo
-    container_name: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
+    image: kbimsara/cloud-app-dev:backend
+    expose:
+      - "4000"
 
   nginx:
-    image: $DOCKER_USERNAME/dev-todo:nginx
-    container_name: nginx
+    image: nginx:latest
     ports:
       - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - backend1
       - backend2
-
-volumes:
-  mongo_data:
