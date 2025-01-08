@@ -1,22 +1,23 @@
-version: '3'
+version: '3'  # Optional for compatibility; it can be removed for newer versions
+
 services:
   frontend:
-    image: kbimsara/cloud-app-dev:frontend
+    image: kbimsara/dev-todo:frontend  # This will pull the image from Docker Hub
     ports:
       - "3000:3000"
 
   backend1:
-    image: kbimsara/cloud-app-dev:backend
+    image: kbimsara/dev-todo:backend  # This will pull the image from Docker Hub
     expose:
       - "4000"
 
   backend2:
-    image: kbimsara/cloud-app-dev:backend
+    image: kbimsara/dev-todo:backend  # This will pull the image from Docker Hub
     expose:
       - "4000"
 
   nginx:
-    image: nginx:latest
+    image: nginx:latest  # This will pull the latest official Nginx image from Docker Hub
     ports:
       - "80:80"
     volumes:

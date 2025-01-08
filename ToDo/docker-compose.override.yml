@@ -1,4 +1,0 @@
-services:
-  backend:
-    deploy:
-      replicas: 2
