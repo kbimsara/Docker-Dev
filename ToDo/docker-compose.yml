@@ -28,6 +28,10 @@ services:
     depends_on:
       - mongodb
 
+
+networks:
+  mern_network:
+    driver: bridge 
   
 volumes:
   mongo-data:
