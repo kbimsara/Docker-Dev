@@ -29,7 +29,7 @@ jobs:
 
     - name: Build and Push Docker Images
       run: |
-        cd "Docker-Dev/ToDo"
+        cd "Docker-Dev/ToDo/docker-compose.yml"
         docker-compose build
         docker-compose push
       
