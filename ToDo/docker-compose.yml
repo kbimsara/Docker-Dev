@@ -27,3 +27,7 @@ services:
       MONGO_URI: mongodb://mongodb:27017/todoDB
     depends_on:
       - mongodb
+
+  
+volumes:
+  mongo-data:
