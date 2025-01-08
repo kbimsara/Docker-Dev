@@ -30,17 +30,17 @@ jobs:
     - name: Build Front-end
       run: |
         cd "./ToDo/front-end" 
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/dev-tod:frontend .
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/dev-todo:frontend .
 
     - name: Build Back-end
       run: |
         cd "./ToDo/backend-server" 
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/dev-tod:backend .
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/dev-todo:backend .
 
     - name: Build MongoDB
       run: |
         cd "./ToDo/mongoDB" 
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/dev-tod:mongo .
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/dev-todo:mongo .
 
     # - name: Build and Push Docker Images
     #   run: |
