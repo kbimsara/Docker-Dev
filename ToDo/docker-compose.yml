@@ -1,6 +1,6 @@
 services:
   mongodb:
-    image: kbimsara/cloud-app-dev:mongo
+    image: kbimsara/dev-tod:mongo
     ports:
       - "27017:27017"
     networks:
@@ -9,7 +9,7 @@ services:
       - mongo-data:/data/db 
 
   frontend:
-    image: kbimsara/cloud-app-dev:frontend
+    image: kbimsara/dev-tod:frontend
     ports:
       - "3000:3000"
     networks:
@@ -18,7 +18,7 @@ services:
       - backend
 
   backend:
-    image: kbimsara/cloud-app-dev:backend
+    image: kbimsara/dev-tod:backend
     ports:
       - "5000:5000"
     networks:
