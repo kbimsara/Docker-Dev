@@ -24,10 +24,6 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y docker-compose
 
-    - name: List Files in Repository
-      run: ls -al
-      
-
     # Log in to Docker Hub
     - name: Log in to Docker Hub
       uses: docker/login-action@v3
@@ -50,18 +46,17 @@ jobs:
         cd "./ToDo/mongoDB" 
         docker build -t ${{ secrets.DOCKER_USERNAME }}/dev-todo:mongo .
 
-    # - name: Build and Push Docker Images
-    #   run: |
-    #     cd "./ToDo"  
-    #     docker-compose build
-    #     docker-compose push
-
-    - name: Print All Docker Images
+    - name: Build NGINX
       run: |
-        docker images 
-        
-    - name: Push Docker image
+        cd "./ToDo/nginx" 
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/dev-todo:nginx .
+
+    - name: Push Docker Images
       run: |
         docker push ${{ secrets.DOCKER_USERNAME }}/dev-todo:mongo
         docker push ${{ secrets.DOCKER_USERNAME }}/dev-todo:backend
         docker push ${{ secrets.DOCKER_USERNAME }}/dev-todo:frontend
+        docker push ${{ secrets.DOCKER_USERNAME }}/dev-todo:nginx
+
+    - name: Print All Docker Images
+      run: docker images

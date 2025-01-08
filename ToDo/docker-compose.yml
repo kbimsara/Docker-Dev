@@ -1,37 +1,40 @@
-services:
-  mongodb:
-    image: kbimsara/dev-tod:mongo
-    ports:
-      - "27017:27017"
-    networks:
-      - mern_network
-    volumes:
-      - mongo-data:/data/db 
+version: '3.8'
 
+services:
   frontend:
-    image: kbimsara/dev-tod:frontend
+    image: $DOCKER_USERNAME/dev-todo:frontend
+    container_name: frontend
     ports:
       - "3000:3000"
-    networks:
-      - mern_network
-    depends_on:
-      - backend
 
-  backend:
-    image: kbimsara/dev-tod:backend
-    ports:
-      - "5000:5000"
-    networks:
-      - mern_network
+  backend1:
+    image: $DOCKER_USERNAME/dev-todo:backend
+    container_name: backend1
     environment:
-      MONGO_URI: mongodb://mongodb:27017/todoDB
+      - MONGO_URL=mongodb://mongo:27017/todo
+
+  backend2:
+    image: $DOCKER_USERNAME/dev-todo:backend
+    container_name: backend2
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/todo
+
+  mongo:
+    image: $DOCKER_USERNAME/dev-todo:mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  nginx:
+    image: $DOCKER_USERNAME/dev-todo:nginx
+    container_name: nginx
+    ports:
+      - "80:80"
     depends_on:
-      - mongodb
+      - backend1
+      - backend2
 
-
-networks:
-  mern_network:
-    driver: bridge 
-  
 volumes:
-  mongo-data:
+  mongo_data:
