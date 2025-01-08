@@ -17,7 +17,7 @@ services:
       - "4000"
 
   nginx:
-    image: nginx:latest  # This will pull the latest official Nginx image from Docker Hub
+    image: kbimsara/dev-todo:nginx # This will pull the latest official Nginx image from Docker Hub
     ports:
       - "80:80"
     volumes:
