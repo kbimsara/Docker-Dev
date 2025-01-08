@@ -21,15 +21,14 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y docker-compose
 
-    - name: Login to DockerHub
-      uses: docker/login-action@v2
-      with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: List Files in Root Directory
+      run: ls -al
+
+    - name: Navigate to ToDo Directory
+      run: cd "Docker-Dev/ToDo" && ls -al
 
     - name: Build and Push Docker Images
       run: |
-        cd "Docker-Dev/ToDo/docker-compose.yml"
+        cd "Docker-Dev/ToDo"
         docker-compose build
         docker-compose push
-      
