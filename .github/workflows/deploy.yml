@@ -33,6 +33,9 @@ jobs:
         docker-compose build
         docker-compose push
 
+    - name: Print All Docker Images
+      run: |
+        docker images 
         
     - name: Push Docker image
       run: |
