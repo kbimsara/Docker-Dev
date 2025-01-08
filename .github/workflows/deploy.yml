@@ -52,6 +52,8 @@ jobs:
       run: |
         docker images 
         
-    # - name: Push Docker image
-    #   run: |
-    #     docker push ${{ secrets.DOCKER_USERNAME }}/dev-todo:latest
+    - name: Push Docker image
+      run: |
+        docker push ${{ secrets.DOCKER_USERNAME }}/dev-todo:mongo
+        docker push ${{ secrets.DOCKER_USERNAME }}/dev-todo:backend
+        docker push ${{ secrets.DOCKER_USERNAME }}/dev-todo:frontend
