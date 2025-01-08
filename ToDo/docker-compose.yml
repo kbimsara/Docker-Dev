@@ -32,8 +32,6 @@ services:
       - mongo
 
   mongo:
-    build:
-      context: ./path_to_your_mongodb_dockerfile  # Path to MongoDB Dockerfile directory
     image: dev-todo:mongo  # Tag for your custom MongoDB image
     container_name: mongo
     ports:
