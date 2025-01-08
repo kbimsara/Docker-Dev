@@ -13,6 +13,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Debug Directory Structure
+      run: ls -R
+
     - name: Set up Docker
       uses: docker/setup-buildx-action@v2
 
@@ -21,14 +24,11 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y docker-compose
 
-    - name: List Files in Root Directory
+    - name: List Files in Repository
       run: ls -al
-
-    - name: Navigate to ToDo Directory
-      run: cd "Docker-Dev/ToDo" && ls -al
 
     - name: Build and Push Docker Images
       run: |
-        cd "Docker-Dev/ToDo"
+        cd "Docker-Dev/ToDo"  
         docker-compose build
         docker-compose push
