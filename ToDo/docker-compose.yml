@@ -1,4 +1,4 @@
-version: '3'  # Optional for compatibility; it can be removed for newer versions
+version: '3'
 
 services:
   frontend:
@@ -10,14 +10,18 @@ services:
     image: kbimsara/dev-todo:backend  # This will pull the image from Docker Hub
     expose:
       - "4000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/todo  # MongoDB connection URL
 
   backend2:
     image: kbimsara/dev-todo:backend  # This will pull the image from Docker Hub
     expose:
       - "4000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/todo  # MongoDB connection URL
 
   nginx:
-    image: kbimsara/dev-todo:nginx # This will pull the latest official Nginx image from Docker Hub
+    image: kbimsara/dev-todo:nginx  # This will pull the image from Docker Hub
     ports:
       - "80:80"
     volumes:
@@ -25,3 +29,17 @@ services:
     depends_on:
       - backend1
       - backend2
+      - mongo
+
+  mongo:
+    build:
+      context: ./path_to_your_mongodb_dockerfile  # Path to MongoDB Dockerfile directory
+    image: dev-todo:mongo  # Tag for your custom MongoDB image
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
