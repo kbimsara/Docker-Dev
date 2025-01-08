@@ -32,3 +32,8 @@ jobs:
         cd "./ToDo"  
         docker-compose build
         docker-compose push
+
+        
+    - name: Push Docker image
+      run: |
+        docker push ${{ secrets.DOCKER_USERNAME }}/dev-todo:latest
