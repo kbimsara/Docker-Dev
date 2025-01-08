@@ -4,20 +4,24 @@ FROM node:18.9.1
 # Set the working directory
 WORKDIR /app
 
-# Copy the file from your host to your current location
+# Copy package files
 COPY package*.json .
 
 # Install dependencies
 RUN npm install
 
-# Fix permissions to avoid permission issues (optional but can be helpful)
+# Create a user and switch to that user
+RUN useradd -m myuser
+USER myuser
+
+# Fix permissions for the app
 RUN chmod -R 755 /app
 
-# Inform Docker that the container is listening on the specified port at runtime
+# Expose the port
 EXPOSE 3000
 
-# Copy the rest of your app's source code from your host to your image filesystem
+# Copy the rest of the app
 COPY . .
 
-# Run the specified command within the container
+# Run the app
 CMD ["npm", "start"]
