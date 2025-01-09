@@ -1,6 +1,9 @@
 # Use the official image as a parent image
 FROM node:16.14.0-alpine3.15
+
 RUN addgroup app && adduser -S -G app app
+
+USER app
 
 # Set the working directory
 WORKDIR /app
