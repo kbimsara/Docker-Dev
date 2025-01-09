@@ -28,7 +28,7 @@ services:
       - mongo
 
   mongo:
-    image: dev-todo:mongo  # Tag for your custom MongoDB image
+    image: mongo:latest  # Tag for your custom MongoDB image
     container_name: mongo
     ports:
       - "27017:27017"
