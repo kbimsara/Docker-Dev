@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json .
 
 # Install dependencies
-RUN npm install
+RUN npm install react-scripts --save
 
 # Create a user (optional, if you need a non-root user)
 RUN useradd -m myuser
