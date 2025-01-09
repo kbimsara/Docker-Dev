@@ -8,9 +8,9 @@ WORKDIR /app
 COPY package*.json .
 
 # Install dependencies
-RUN npm install
+RUN npm install && npm run build
 
-Run sudo chmod +x node_modules/.bin/react-scripts
+
 
 # Expose the port
 EXPOSE 3000
