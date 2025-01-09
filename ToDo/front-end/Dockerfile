@@ -10,15 +10,7 @@ COPY package*.json .
 # Install dependencies
 RUN npm install
 
-# Create a user (optional, if you need a non-root user)
-RUN useradd -m myuser
-
-# Ensure the permissions are set by using root user temporarily
-USER root
-RUN chmod -R 755 /app
-
-# Switch back to non-root user (if desired)
-USER myuser
+Run sudo chmod +x node_modules/.bin/react-scripts
 
 # Expose the port
 EXPOSE 3000
