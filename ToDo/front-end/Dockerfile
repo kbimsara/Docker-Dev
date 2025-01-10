@@ -10,21 +10,18 @@ COPY package*.json ./
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the app source code
-COPY . .
-
-# Build the app (useful for production)
+# Build the app
 RUN npm run build
 
-# Install a lightweight HTTP server to serve the built app
-RUN npm install -g serve
-
-# Use a non-root user for runtime
+# Create and switch to non-root user
 RUN useradd -m myuser && chown -R myuser:myuser /app
 USER myuser
 
 # Expose the port serve will use
 EXPOSE 3000
+
+# Install a lightweight HTTP server to serve the built app
+RUN npm install -g serve
 
 # Command to serve the build (production)
 CMD ["serve", "-s", "build", "-l", "3000"]
