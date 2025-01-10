@@ -1,6 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const retries = 5;
+let attempts = 0;
 const User = require('./models/user.model.js');
 const Task = require('./models/todo.model.js');
 
