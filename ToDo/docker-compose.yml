@@ -6,13 +6,12 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - backend1
-      - backend2
+      - nginx  # Frontend depends on NGINX
 
   backend1:
     image: kbimsara/dev-todo:backend  # This will pull the image from Docker Hub
     expose:
-      - "4000"
+      - "4000"  # Exposes the port internally to NGINX
     environment:
       - MONGO_URI=mongodb://mongo:27017/todo  # MongoDB connection URL
     depends_on:
@@ -21,7 +20,7 @@ services:
   backend2:
     image: kbimsara/dev-todo:backend  # This will pull the image from Docker Hub
     expose:
-      - "4000"
+      - "4000"  # Exposes the port internally to NGINX
     environment:
       - MONGO_URI=mongodb://mongo:27017/todo  # MongoDB connection URL
     depends_on:
@@ -38,9 +37,9 @@ services:
   nginx:
     image: kbimsara/dev-todo:nginx  # This will pull the image from Docker Hub
     ports:
-      - "80:80"
+      - "80:80"  # NGINX load balancer listens on port 80
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf  # Custom NGINX configuration
     depends_on:
       - backend1
       - backend2
