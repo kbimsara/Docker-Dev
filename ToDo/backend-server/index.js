@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(cors({
-    origin: 'http://localhost:3000', // Ensure this matches your frontend's origin
+    origin: 'http://localhost:80', // Ensure this matches your frontend's origin
 }));
 
 // Test server working
@@ -102,13 +102,16 @@ app.delete('/api/task/:id', async (req, res) => {
 });
 
 // MongoDB Connection
-mongoose.connect("mongodb://mongodb:27017/todoDB")
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
-        console.log('Connected to the database!');
-        app.listen(5000, () => {
-            console.log('Server is running on port 5000');
-        });
+        console.log('Connected to MongoDB');
     })
-    .catch(err => {
-        console.log("Database connection failed:", err.message);
+    .catch((err) => {
+        if (attempts < retries) {
+            console.log(`Attempt ${attempts + 1} failed: ${err.message}. Retrying...`);
+            attempts++;
+            setTimeout(connectToDatabase, 5000);  // Retry after 5 seconds
+        } else {
+            console.log('Database connection failed after multiple attempts');
+        }
     });
