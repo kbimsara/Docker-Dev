@@ -15,7 +15,7 @@ services:
     environment:
       MONGO_URI: mongodb://mongodb:27017/todoDB # MongoDB connection URL
     depends_on:
-      - mongo
+      - mongodb
 
   backend2:
     image: kbimsara/dev-todo:backend  # This will pull the image from Docker Hub
@@ -24,9 +24,9 @@ services:
     environment:
       MONGO_URI: mongodb://mongodb:27017/todoDB  # MongoDB connection URL
     depends_on:
-      - mongo
+      - mongodb
 
-  mongo:
+  mongodb:
     image: mongo:latest  # Tag for your custom MongoDB image
     container_name: mongo
     ports:
@@ -43,7 +43,7 @@ services:
     depends_on:
       - backend1
       - backend2
-      - mongo
+      - mongodb
 
 volumes:
   mongo-data:
