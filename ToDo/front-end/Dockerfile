@@ -4,24 +4,27 @@ FROM node:18.9.1
 # Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy only the package files first for better caching
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
 
-# Build the app
+# Copy the rest of the application source code
+COPY . .
+
+# Build the React app
 RUN npm run build
 
-# Create and switch to non-root user
+# Install a lightweight HTTP server for serving the built app
+RUN npm install -g serve
+
+# Create and switch to a non-root user for running the app
 RUN useradd -m myuser && chown -R myuser:myuser /app
 USER myuser
 
-# Expose the port serve will use
+# Expose the port Serve will use
 EXPOSE 3000
 
-# Install a lightweight HTTP server to serve the built app
-RUN npm install -g serve
-
-# Command to serve the build (production)
+# Command to serve the built app
 CMD ["serve", "-s", "build", "-l", "3000"]
