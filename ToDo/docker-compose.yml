@@ -13,7 +13,7 @@ services:
     expose:
       - "4000"  # Exposes the port internally to NGINX
     environment:
-      - MONGO_URI=mongodb://mongo:27017/todo  # MongoDB connection URL
+      MONGO_URI: mongodb://mongodb:27017/todoDB # MongoDB connection URL
     depends_on:
       - mongo
 
@@ -22,7 +22,7 @@ services:
     expose:
       - "4000"  # Exposes the port internally to NGINX
     environment:
-      - MONGO_URI=mongodb://mongo:27017/todo  # MongoDB connection URL
+      MONGO_URI: mongodb://mongodb:27017/todoDB  # MongoDB connection URL
     depends_on:
       - mongo
 
