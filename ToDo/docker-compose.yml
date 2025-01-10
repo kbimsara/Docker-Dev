@@ -37,7 +37,7 @@ services:
   nginx:
     image: kbimsara/dev-todo:nginx  # This will pull the image from Docker Hub
     ports:
-      - "80:80"  # NGINX load balancer listens on port 80
+      - "5000:5000"  # NGINX load balancer listens on port 80
     volumes:
     - ./nginx/nginx.conf:/etc/nginx/nginx.conf  # Correct path to nginx.conf
     depends_on:

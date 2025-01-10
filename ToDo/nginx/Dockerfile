@@ -5,4 +5,4 @@ FROM nginx:latest
 COPY nginx.conf /etc/nginx/nginx.conf
 
 # Expose the port for NGINX
-EXPOSE 80
+EXPOSE 5000
