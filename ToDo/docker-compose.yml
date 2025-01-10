@@ -39,7 +39,7 @@ services:
     ports:
       - "80:80"  # NGINX load balancer listens on port 80
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf  # Custom NGINX configuration
+    - ./nginx/nginx.conf:/etc/nginx/nginx.conf  # Correct path to nginx.conf
     depends_on:
       - backend1
       - backend2
