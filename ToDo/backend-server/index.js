@@ -13,6 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors({
     origin: ['http://localhost:3000', 'http://localhost:80'], // Ensure this matches your frontend's origin
     methods: ['GET', 'POST', 'PUT', 'DELETE'], // List of allowed methods
+    credentials: true, // Enable if your frontend needs cookies or authentication headers
 }));
 
 // Test server working
