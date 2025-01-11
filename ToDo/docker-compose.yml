@@ -47,3 +47,7 @@ services:
 
 volumes:
   mongo-data:
+
+# networks:
+#   todo_default:
+#     driver: bridge 
