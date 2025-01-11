@@ -11,7 +11,7 @@ import './Login.css';
 import HomeNav from '../Component/Home/HomeNav';
 
 function Login() {
-    const url = "http://localhost:5000/api/user/login";
+    const url = "http://localhost:80/api/user/login";
     const navigate = useNavigate();
     const [data, setData] = useState({
         email: "",
