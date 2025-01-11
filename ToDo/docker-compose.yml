@@ -11,7 +11,7 @@ services:
   backend1:
     image: kbimsara/dev-todo:backend  # This will pull the image from Docker Hub
     expose:
-      - "4000"  # Exposes the port internally to NGINX
+      - "5000"  # Exposes the port internally to NGINX
     environment:
       MONGO_URI: mongodb://mongodb:27017/todoDB # MongoDB connection URL
     depends_on:
@@ -20,7 +20,7 @@ services:
   backend2:
     image: kbimsara/dev-todo:backend  # This will pull the image from Docker Hub
     expose:
-      - "4000"  # Exposes the port internally to NGINX
+      - "5000"  # Exposes the port internally to NGINX
     environment:
       MONGO_URI: mongodb://mongodb:27017/todoDB  # MongoDB connection URL
     depends_on:
