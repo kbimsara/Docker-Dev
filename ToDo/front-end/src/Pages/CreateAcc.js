@@ -12,7 +12,7 @@ import './CreateAcc.css';
 
 function CreateAcc() {
 
-    const url = "http://localhost:5000/api/user";
+    const url = "http://localhost:80/api/user";
     const navigate = useNavigate();
     const [data, setData] = useState({
         name: "",
