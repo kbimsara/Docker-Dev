@@ -58,7 +58,6 @@ This is a full-stack to-do application built using the **MERN stack** (MongoDB, 
 ### Steps:
 1. Navigate to the project directory:
    ```bash
-   cd <project-folder>
    cd todo
 2. Start all services using Docker Compose:
    ```bash
